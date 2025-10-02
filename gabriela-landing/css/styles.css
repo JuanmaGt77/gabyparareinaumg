@@ -1,0 +1,157 @@
+:root{
+  --pink-bg: #f4c9d6;         /* rosado claro/pálido de fondo */
+  --pink-card: #f2b9c9;       /* tarjeta ligeramente más intensa */
+  --text: #ffffff;
+  --text-dim: rgba(255,255,255,.75);
+  --shadow: 0 18px 50px rgba(0,0,0,.18);
+}
+
+*{ box-sizing: border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--pink-bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* Logo centro superior (en lugar de la P) */
+.top-center-logo{
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  opacity: .25; /* sutil como en la referencia */
+}
+.top-center-logo img{
+  height: 48px;
+  width: auto;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.1));
+}
+
+/* Header mínimo con “ING” y el único botón */
+.site-header{
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 26px 28px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand-left{
+  font-weight: 700;
+  letter-spacing: .2em;
+  font-size: 18px;
+}
+.nav .btn-primary{
+  text-decoration: none;
+  padding: 10px 18px;
+  border: 1px solid rgba(255,255,255,.6);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  color: var(--text);
+  transition: transform .2s ease, background-color .2s ease, border-color .2s ease, opacity .2s;
+}
+.nav .btn-primary:hover{ transform: translateY(-1px); }
+.nav .btn-primary.conoceme.html{ /*......................................................................................*/
+  opacity: .55;
+  pointer-events: none; /* pendiente */
+}
+
+/* Hero “tarjeta” como la comp del ejemplo */
+.hero{
+  position: relative;
+  max-width: 1100px;
+  height: clamp(520px, 70vh, 680px);
+  margin: 22px auto 40px;
+  background: var(--pink-card);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* Marca de agua SISTEMAS */
+.watermark{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: clamp(48px, 18vw, 200px); /* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */
+  letter-spacing: .05em;
+  color: rgba(255,255,255,.12); /* muy tenue */
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Silueta degradada (doble de grande, desenfoque suave) */
+.hero-bg{
+  position: absolute;
+  inset: -6% -6% -6% -6%;
+  background-image: url("../assets/img/gabyprincipal.png");
+  background-position: center 45%;
+  background-repeat: no-repeat;
+  background-size: 120% auto;
+  filter: blur(2px) saturate(.9);
+  opacity: .10; /* como la referencia: se ve pero no estorba */
+  pointer-events: none;
+}
+
+/* Títulos centrales */
+.hero-content{
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 5;
+}
+.title{
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: .35em;
+  text-transform: uppercase;
+  font-size: clamp(28px, 6vw, 64px);
+}
+.year{
+  margin: 6px 0 0;
+  font-size: clamp(12px, 1.8vw, 16px);
+  letter-spacing: .6em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+/* Modelo (primer plano), alineación al borde inferior como en el mock */
+.model{
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  pointer-events: none;
+}
+.model img{
+  display: block;
+  height: clamp(360px, 68vh, 640px);
+  width: auto;
+  filter: drop-shadow(0 18px 28px rgba(0,0,0,.28));
+}
+
+/* Footer */
+.site-footer{
+  text-align: center;
+  color: rgba(255,255,255,.85);
+  margin-bottom: 24px;
+}
+
+/* Responsivo: ajusta el tamaño y centrados en móviles */
+@media (max-width: 760px){
+  .site-header{ padding: 18px 18px 0; }
+  .top-center-logo img{ height: 40px; }
+  .model img{ height: clamp(300px, 55vh, 520px); }
+  .title{ letter-spacing: .25em; }
+  .year{ letter-spacing: .45em; }
+}

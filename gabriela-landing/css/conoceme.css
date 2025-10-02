@@ -1,0 +1,264 @@
+/* ===== Paleta y tipografías base ===== */
+:root{
+  --peach-1:#f7c7b0;       /* franja clara del hero */
+  --peach-2:#f4a776;       /* franja media */
+  --peach-3:#e68958;       /* franja intensa (como en la maqueta) */
+  --cream:   #f5f1ec;      /* fondo crema de secciones */
+  --gold:    #c7a867;      /* título dorado */
+  --ink:     #1a1a1a;      /* texto */
+  --muted:   #666;
+  --shadow:  0 20px 60px rgba(0,0,0,.18);
+}
+
+*{ box-sizing: border-box; }
+html, body{ margin:0; padding:0; }
+body{
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--ink);
+  background: #ffffff;
+}
+
+/* ===== HERO SUPERIOR ===== */
+.hero{
+  background:
+    linear-gradient(180deg, var(--peach-2) 0%, var(--peach-3) 100%);
+  border-bottom: 12px solid #fff;
+}
+.hero-inner{
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: clamp(32px, 5vw, 56px) 20px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr; /* texto / foto */
+  align-items: end;
+  gap: 24px;
+}
+
+/* Títulos del hero (estilo del mock) */
+.hero-title{
+  margin: 6px 0 8px;
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  letter-spacing: .04em;
+  font-size: clamp(38px, 6.5vw, 76px);
+  color: #fff;
+}
+.hero-script{
+  font-family: "Pacifico", cursive;
+  font-size: clamp(26px, 4.5vw, 48px);
+  color: #ffeadf;                 /* script claro */
+  text-shadow: 0 2px 0 rgba(0,0,0,.05);
+  transform: translateX(4px) rotate(-2deg);
+}
+.hero-figure{
+  justify-self: end;
+  align-self: end;
+  position: relative;
+  filter: drop-shadow(0 18px 40px rgba(0,0,0,.25));
+}
+.hero-figure img{
+  display:block;
+  max-width: min(420px, 90%);
+  height: auto;
+  border-radius: 8px;   /* por si no está perfectamente recortada */
+}
+
+/* ===== BLOQUE INTERMEDIO ===== */
+.intro{
+  background: #fff;
+  border-top: 10px solid #fff;
+}
+.intro-inner{
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 48px) 20px;
+  background: var(--cream);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr; /* imagen / texto */
+  gap: 28px;
+}
+.intro-figure{
+  background: #f0672e10;
+  padding: 14px;
+  border-radius: 8px;
+}
+.intro-figure img{
+  display:block;
+  width: 100%; height: auto; border-radius: 6px;
+  object-fit: cover;
+}
+.intro-copy{ align-self: center; }
+.intro-title{
+  margin: 0 0 10px;
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--gold);
+  font-size: clamp(26px, 4vw, 52px);
+}
+.intro-text{
+  margin: 0 0 18px;
+  color: var(--ink);
+  line-height: 1.7;
+  max-width: 56ch;
+}
+.btn-primary{
+  display:inline-block;
+  padding: 12px 18px;
+  background: #f2d27f;     /* amarillo suave del mock */
+  color: #2a2a2a;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-decoration: none;
+  cursor: default;         /* pendiente */
+  box-shadow: 0 8px 22px rgba(0,0,0,.12);
+}
+
+/* ===== CIERRE ===== */
+.closing{
+  background: #fff;
+  padding: clamp(32px, 6vw, 64px) 20px 80px;
+}
+.closing-inner{
+  max-width: 1120px; margin: 0 auto;
+  text-align: center;
+}
+.closing-kicker{
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  font-size: clamp(34px, 6vw, 72px);
+  letter-spacing: .04em;
+  color: var(--ink);
+}
+.closing-sub{
+  margin-top: 8px;
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  letter-spacing: .18em;
+  color: #7a5a2a;
+  font-size: clamp(12px, 2vw, 16px);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 980px){
+  .hero-inner{ grid-template-columns: 1fr; align-items:center; text-align:left; }
+  .hero-figure{ justify-self: start; }
+  .intro-inner{ grid-template-columns: 1fr; }
+}
+
+/* ===== Slider táctil (intro) ===== */
+.intro-slider{
+  background: #f0672e10;
+  padding: 14px;
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.08) inset;
+}
+.slides{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;        /* 1 foto por vista */
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 10px;
+  touch-action: pan-x;            /* gesto horizontal */
+  /* enmascara bordes para el “frame” */
+  mask-image: linear-gradient(90deg, transparent 0, #000 8px, #000 calc(100% - 8px), transparent 100%);
+}
+.slide{
+  scroll-snap-align: center;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #222;
+  transform: scale(.96);
+  opacity: .85;
+  transition: transform .45s cubic-bezier(.2,.8,.2,1), opacity .45s cubic-bezier(.2,.8,.2,1);
+  box-shadow: 0 8px 22px rgba(0,0,0,.18);
+}
+.slide.is-active{
+  transform: scale(1);
+  opacity: 1;
+}
+.slide img{
+  display:block;
+  width: 100%;
+  height: 520px;                 /* ajusta si quieres más/menos alto */
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ocultar scrollbar visual sin quitar scroll */
+.slides::-webkit-scrollbar{ height: 0; }
+
+/* === Hero con imagen fija (mobile-first) === */
+.hero.hero-image{
+  background: #fff;          /* sin degradados atrás */
+  border-bottom: none;
+}
+
+.hero-image-inner{
+  max-width: 1120px;         /* mismo ancho que el resto */
+  margin: 0 auto;
+  padding: 16px 12px 8px;    /* respiración en móvil */
+}
+
+.hero-title-img{
+  display: block;
+  width: 100%;
+  height: auto;              /* respeta proporción de tu imagen */
+  border-radius: 14px;       /* borde suave como tu mock */
+  box-shadow: 0 20px 50px rgba(0,0,0,.18);
+  background: #f6d7df;      /* por si tarda en cargar */
+  object-fit: cover;         /* seguro si subes otra proporción */
+}
+
+/* En pantallas más grandes le damos un poco más de aire */
+@media (min-width: 960px){
+  .hero-image-inner{ padding: 28px 16px 10px; }
+  .hero-title-img{ border-radius: 16px; }
+}
+
+/* Si tenías estilos del hero anterior, los anulamos */
+.hero .hero-inner,
+.hero .hero-copy,
+.hero .hero-figure{ display: none !important; }
+
+/* aire dentro del texto de la columna derecha */
+.intro-copy{
+  padding: 16px 18px;      /* ← margen interno para que no toque bordes */
+}
+
+/* opcional: un poco más de aire en pantallas pequeñas */
+@media (max-width: 900px){
+  .intro-copy{ padding: 18px 20px; }
+}
+
+/* si ves que el título también queda muy cerca arriba */
+.intro-title{ margin-top: 2px; }
+
+/* Botón Regresar (superior izquierda, mobile-first) */
+.back-btn{
+  position: fixed;
+  top: calc(10px + env(safe-area-inset-top)); /* respeta notch */
+  left: calc(10px + env(safe-area-inset-left));
+  z-index: 1000;
+  padding: 10px 14px;
+  min-height: 40px;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 10px;
+  background: #ffffff;
+  color: #222;
+  font: 600 14px/1 "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  box-shadow: 0 8px 18px rgba(0,0,0,.16);
+  cursor: pointer;
+}
+.back-btn:active{ transform: translateY(1px); }
+@media (min-width: 1024px){
+  .back-btn{ top: 14px; left: 14px; }
+}
